@@ -1,0 +1,218 @@
+
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+import streamlit as st
+
+st.set_page_config(page_title="FlyWire Neural Activity", layout="wide")
+st.title("Phase 4: FlyWire EPG Neural Activity")
+st.write("Connectome-informed neural activity simulation")
+
+# Read the actual FlyWire CSV files
+base = Path(__file__).resolve().parent.parent
+
+neurons = pd.read_csv(
+    base / "search_results_cell_type_EPG.csv",
+    dtype={"root_id": str}
+)
+connections = pd.read_csv(
+    base / "connections.csv",
+    dtype={"From": str, "To": str}
+)
+
+ids = neurons["root_id"].dropna().unique().tolist()
+n = len(ids)
+index = {root_id: i for i, root_id in enumerate(ids)}
+
+connections["Synapses"] = pd.to_numeric(
+    connections["Synapses"], errors="coerce"
+).fillna(0)
+
+# Matrix W[target, source] contains synapse counts
+W = np.zeros((n, n))
+
+for row in connections.itertuples(index=False):
+    source = getattr(row, "From")
+    target = getattr(row, "To")
+    count = getattr(row, "Synapses")
+
+    if source in index and target in index:
+        W[index[target], index[source]] += count
+
+# Normalize each target neuron's incoming connections
+row_sums = W.sum(axis=1, keepdims=True)
+W_norm = np.divide(
+    W, row_sums,
+    out=np.zeros_like(W),
+    where=row_sums > 0
+)
+
+st.metric("EPG neurons", n)
+st.metric("Connection records", len(connections))
+st.metric("Annotated synapses", int(W.sum()))
+
+st.subheader("Simulation settings")
+
+steps = st.slider("Simulation steps", 20, 200, 80)
+gain = st.slider("Recurrent coupling", 0.0, 2.0, 1.0, 0.1)
+noise = st.slider("Neural noise", 0.0, 0.3, 0.03, 0.01)
+visual = st.checkbox("Visual landmark input", value=True)
+turn = st.slider("Fly turning rate (degrees/step)", -5.0, 5.0, 1.0, 0.5)
+
+# NOTE: Unit order is an illustrative compass ordering.
+# FlyWire IDs do not themselves encode angular position.
+angles = np.linspace(0, 2 * np.pi, n, endpoint=False)
+
+def circular_bump(direction):
+    return np.exp(3 * (np.cos(angles - direction) - 1))
+
+def shift_activity(values, shift_degrees):
+    """Circularly interpolate the activity pattern."""
+    shifted = (
+        angles - np.deg2rad(shift_degrees)
+    ) % (2 * np.pi)
+
+    return np.interp(
+        shifted,
+        np.append(angles, 2 * np.pi),
+        np.append(values, values[0])
+    )
+
+rng = np.random.default_rng(42)
+activity = circular_bump(0)
+history = [activity.copy()]
+estimated_headings = []
+true_headings = []
+
+alpha = 0.25
+
+for t in range(steps):
+    true_heading = np.deg2rad((t + 1) * turn)
+
+    # Illustrative movement-related update
+    shifted = shift_activity(activity, turn)
+
+    # Actual FlyWire-derived recurrent connectivity
+    recurrent = W_norm @ shifted
+
+    # Optional visual correction toward true heading
+    visual_drive = (
+        0.6 * circular_bump(true_heading)
+        if visual else np.zeros(n)
+    )
+
+    # Simplified nonnegative rate dynamics
+    drive = (
+        0.45 * shifted
+        + gain * recurrent
+        + visual_drive
+        + rng.normal(0, noise, n)
+    )
+
+    target = np.maximum(drive, 0)
+    if target.max() > 0:
+        target = target / target.max()
+
+    activity = (1 - alpha) * shifted + alpha * target
+
+    history.append(activity.copy())
+
+    vector = np.sum(
+        activity * np.exp(1j * angles)
+    )
+
+    estimate = np.angle(vector) if abs(vector) > 1e-9 else np.nan
+
+    estimated_headings.append(
+        np.rad2deg(estimate) % 360
+    )
+    true_headings.append(
+        np.rad2deg(true_heading) % 360
+    )
+
+history = np.array(history)
+
+st.subheader("Neural activity over time")
+
+heatmap = go.Figure(data=go.Heatmap(
+    z=history.T,
+    x=list(range(len(history))),
+    y=list(range(n)),
+    colorscale="Viridis",
+    colorbar=dict(title="Activity")
+))
+
+heatmap.update_layout(
+    xaxis_title="Simulation step",
+    yaxis_title="EPG neuron index",
+    height=500
+)
+
+st.plotly_chart(heatmap, use_container_width=True)
+
+st.subheader("Anatomical connectivity matrix")
+
+matrix_fig = go.Figure(data=go.Heatmap(
+    z=W,
+    colorscale="Blues",
+    colorbar=dict(title="Synapses")
+))
+
+matrix_fig.update_layout(
+    xaxis_title="Presynaptic neuron index",
+    yaxis_title="Postsynaptic neuron index",
+    height=500
+)
+
+st.plotly_chart(matrix_fig, use_container_width=True)
+
+st.subheader("Final neural activity")
+
+final_fig = go.Figure(data=go.Bar(
+    x=list(range(n)),
+    y=activity
+))
+
+final_fig.update_layout(
+    xaxis_title="EPG neuron index",
+    yaxis_title="Simulated activity",
+    height=350
+)
+
+st.plotly_chart(final_fig, use_container_width=True)
+
+st.subheader("Simulated heading estimate")
+
+# Circular heading error
+error = (
+    np.array(estimated_headings)
+    - np.array(true_headings)
+    + 180
+) % 360 - 180
+
+st.metric(
+    "Mean absolute heading error",
+    f"{np.nanmean(np.abs(error)):.1f} degrees"
+)
+
+heading_fig = go.Figure()
+heading_fig.add_trace(go.Scatter(
+    y=error,
+    mode="lines",
+    name="Heading error"
+))
+heading_fig.update_layout(
+    xaxis_title="Simulation step",
+    yaxis_title="Circular heading error (degrees)",
+    height=350
+)
+st.plotly_chart(heading_fig, use_container_width=True)
+
+st.caption(
+    "Connectivity comes from FlyWire FAFB v783. "
+    "Activity, angular neuron ordering, movement input, "
+    "visual drive, and neural dynamics are model assumptions. "
+    "This is not a validated physiological simulation."
+)
