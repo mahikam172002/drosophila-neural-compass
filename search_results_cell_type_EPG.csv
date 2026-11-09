@@ -1,0 +1,48 @@
+root_id,label,name,nt_type,flow,super_class,class,sub_class,cell_type,hemilineage,nerve,connectivity_tag,side,input_synapses,output_synapses
+720575940616569601,['EPG_R8'; 'DM4_medial'; 'EPG_L8; EPG'],EB.57,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1643,1191
+720575940619006272,['EPG_R4'; 'not a neuron'; 'EPG_L4; EPG'],EB.355,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,403,854
+720575940635427982,['EPG_L8'; 'DM4_medial'; 'EPG_R8; EPG'],EB.45,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1722,1345
+720575940626721835,['EPG_R8'; 'DM4_medial'; 'EPG_L8; EPG'],EB.61,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1568,1127
+720575940632614295,['EPG_L5'; 'EPG_R5; EPG'; 'PBg1-8?'],EB.35,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1546,1551
+720575940660921985,['EPG_R8'; 'DM4_medial'; 'EPG_L8; EPG'],EB.41,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d3,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1651,1398
+720575940616502066,['EPG_R8'; 'DM4_medial'; 'EPG_L8; EPG'],EB.PB.3,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,264,1056
+720575940610901930,['EPG_L6'; 'EPG_R6; EPG'],EB.79,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1318,1075
+720575940613829900,['EPG_R2'; 'EPG_L2; EPG'],EB.8,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,2274,1918
+720575940614297640,['EPG_R4'; 'EPG_L4; EPG'],EB.348,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,265,791
+720575940624784280,['EPG_L4'; 'EPG_R4; EPG'],EB.48,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1492,1419
+720575940635461550,['EPG_L1'; 'EPG_R1; EPG'],EB.15,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,2390,1714
+720575940605827761,['EPG_L4'; 'EPG_R4; EPG'],EB.40,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1733,1535
+720575940608722371,['EPG_R2'; 'EPG_L2; EPG'],EB.29,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1658,1780
+720575940617769851,['EPG_L2'; 'EPG_R2; EPG'],EB.32,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1781,1498
+720575940620664741,['EPG_R6'; 'EPG_L6; EPG; Branches in gall are incomplete'],EB.352,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,190,723
+720575940622364771,['EPG_R6'; 'EPG_L6; EPG'],EB.58,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1271,1425
+720575940627140551,['EPG_R5'; 'EPG_L5; EPG'],EB.21,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1884,1557
+720575940628802041,['EPG_L7'; 'EPG_R7; EPG'],EB.22,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1825,1484
+720575940618612952,['EPG_L6'; 'EPG_R6; EPG'],EB.73,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1361,1271
+720575940626449082,['EPG_R4'; 'EPG_L4; EPG'],GA.PB.2,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,168,762
+720575940628493572,['EPG_R7'; 'EPG_L7; EPG'],EB.23,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1670,1391
+720575940632844002,['EPG_R5'; 'EPG_L5; EPG'],EB.25,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,2137,1354
+720575940638850512,['EPG_L3'; 'EPG_R3; EPG'],EB.12,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1981,1748
+720575940642634532,['EPG_L2'; 'EPG_R2; EPG'],EB.13,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,2002,1754
+720575940604801993,['EPG_R5'; 'EPG_L5; EPG'],EB.27,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1704,1659
+720575940623852873,['EPG_L8'; 'EPG_R8; EPG'],EB.64,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1197,1334
+720575940629691753,['EPG_L1'; 'EPG_R1; EPG'],GA.PB.1,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,435,1134
+720575940630199963,['EPG_R3'; 'EPG_L3; EPG'],EB.36,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1815,1553
+720575940620020694,['EPG_R7'; 'EPG_L7; EPG'],EB.51,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1492,1237
+720575940624096234,['EPG_L8'; 'EPG_R8; EPG'],EB.GA.4,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,215,997
+720575940625351354,['EPG_L3'; 'EPG_R3; EPG'],EB.26,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1921,1676
+720575940636730694,['EPG_R7'; 'EPG_L7; EPG'],EB.39,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1749,1178
+720575940614926475,['EPG_L7'; 'EPG_R7; EPG'],EB.59,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1348,1288
+720575940619296365,['EPG_L5'; 'EPG_R5; EPG'],EB.42,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1697,1517
+720575940626137895,['EPG_L5'; 'EPG_R5; EPG'],EB.33,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1803,1571
+720575940620282906,['EPG_L7'; 'EPG_R7; EPG'],EB.30,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1742,1472
+720575940631125036,['EPG_R1'; 'EPG_L1; EPG'],EB.10,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,2755,1972
+720575940631708836,['EPG_R3'; 'EPG_L3; EPG'],EB.17,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,2059,1682
+720575940610453427,['EPG_L3'; 'EPG_R3; EPG'],EB.19,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1963,1633
+720575940626315207,['EPGt'; 'EPGt_R7; EPGt'],PB.17,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,567,395
+720575940633719487,['EPG_L8'; 'EPG_R8; EPG'],EB.75,ACH,intrinsic,central,CX,,['EPG'],DM4_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1428,1145
+720575940613836438,['EPG_R3'; 'EPG_L3; EPG'],EB.11,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d1,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,2638,1727
+720575940623046548,['EPG_L4'; 'EPG_R4; EPG'],EB.56,ACH,intrinsic,central,CX,,['EPG'],DM2_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1585,1532
+720575940628843458,['EPG_R1'; 'EPG_L1; EPG'],EB.9,ACH,intrinsic,central,CX,,['EPG'],DM1_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,2749,1802
+720575940611216099,['EPG_R6'; 'EPG_L6; EPG'],EB.44,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],right,1702,1310
+720575940658101889,['EPG_L6'; 'EPG_R6; EPG'],EB.66,ACH,intrinsic,central,CX,,['EPG'],DM3_CX_d2,,['rich_club'; 'reciprocal'; 'feedforward_loop_participant'; '3_cycle_participant'],left,1652,1157
