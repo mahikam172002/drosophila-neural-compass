@@ -135,6 +135,135 @@ st.caption(
     "in a later phase."
 )
 
+# ==========================================
+# PHASE 3: REAL FLYWIRE EPG CONNECTIVITY
+# ==========================================
+
+import pandas as pd
+
+st.divider()
+st.header("Phase 3: Real FlyWire EPG Neural Network")
+
+# Read the two CSV files uploaded to GitHub
+neurons = pd.read_csv(
+    "search_results_cell_type_EPG.csv",
+    dtype={"root_id": str}
+)
+
+connections = pd.read_csv(
+    "connections.csv",
+    dtype={"From": str, "To": str}
+)
+
+# Convert synapse counts into numbers
+connections["Synapses"] = pd.to_numeric(
+    connections["Synapses"], errors="coerce"
+).fillna(0)
+
+# Aggregate synapses across brain regions
+edges = connections.groupby(
+    ["From", "To"], as_index=False
+)["Synapses"].sum()
+
+ids = neurons["root_id"].dropna().unique().tolist()
+id_set = set(ids)
+
+# Keep connections between selected EPG neurons
+edges = edges[
+    edges["From"].isin(id_set)
+    & edges["To"].isin(id_set)
+]
+
+st.write("EPG neurons:", len(ids))
+st.write("Connection records:", len(connections))
+st.write("Total annotated synapses:",
+         int(connections["Synapses"].sum()))
+
+# Interactive synapse strength filter
+minimum = st.slider(
+    "Minimum synapses per neuron pair",
+    1, 30, 1
+)
+
+visible = edges[edges["Synapses"] >= minimum]
+
+# Circular arrangement for visual clarity
+angles = np.linspace(
+    0, 2 * np.pi, len(ids), endpoint=False
+)
+
+positions = {
+    neuron_id: (
+        float(np.cos(angle)),
+        float(np.sin(angle))
+    )
+    for neuron_id, angle in zip(ids, angles)
+}
+
+# Draw connectivity edges
+edge_x = []
+edge_y = []
+
+for _, edge in visible.iterrows():
+    x0, y0 = positions[edge["From"]]
+    x1, y1 = positions[edge["To"]]
+
+    edge_x.extend([x0, x1, None])
+    edge_y.extend([y0, y1, None])
+
+fig_network = go.Figure()
+
+fig_network.add_trace(go.Scatter(
+    x=edge_x,
+    y=edge_y,
+    mode="lines",
+    line=dict(color="rgba(80,150,210,0.3)", width=1),
+    hoverinfo="skip",
+    name="Connections"
+))
+
+# Draw actual EPG neuron nodes
+node_x = [positions[i][0] for i in ids]
+node_y = [positions[i][1] for i in ids]
+
+fig_network.add_trace(go.Scatter(
+    x=node_x,
+    y=node_y,
+    mode="markers",
+    marker=dict(
+        size=11,
+        color="#e4a04c",
+        line=dict(width=1, color="white")
+    ),
+    text=ids,
+    hovertemplate="Neuron ID: %{text}<extra></extra>",
+    name="EPG neurons"
+))
+
+fig_network.update_layout(
+    title="FlyWire EPG Anatomical Connectivity",
+    xaxis=dict(visible=False, scaleanchor="y"),
+    yaxis=dict(visible=False),
+    height=600,
+    showlegend=False
+)
+
+st.plotly_chart(fig_network, use_container_width=True)
+
+st.subheader("Connection Data")
+
+st.dataframe(
+    visible.sort_values("Synapses", ascending=False),
+    use_container_width=True
+)
+
+st.caption(
+    "Neuron identities and connections come from FlyWire "
+    "FAFB v783. Circular node positions are illustrative, "
+    "not anatomical coordinates. The graph shows structural "
+    "connectivity, not measured electrical activity."
+)
+
 
 
 
